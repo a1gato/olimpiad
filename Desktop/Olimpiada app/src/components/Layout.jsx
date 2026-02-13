@@ -9,7 +9,6 @@ export default function Layout({ children }) {
 
     const navItems = [
         { path: '/', label: 'Dashboard', icon: LayoutDashboard },
-        { path: '/register', label: 'Registration', icon: UserPlus },
         { path: '/students', label: 'Student List', icon: Users },
         { path: '/marking', label: 'Marking', icon: BookOpen },
         { path: '/leaderboard', label: 'Leaderboard', icon: Trophy },

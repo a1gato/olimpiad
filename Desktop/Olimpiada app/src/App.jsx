@@ -31,11 +31,7 @@ function App() {
                 <Layout><Dashboard /></Layout>
               </ProtectedRoute>
             } />
-            <Route path="/register" element={
-              <ProtectedRoute>
-                <Layout><Registration /></Layout>
-              </ProtectedRoute>
-            } />
+            {/* Registration removed as per user request */}
             <Route path="/students" element={
               <ProtectedRoute>
                 <Layout><StudentList /></Layout>
