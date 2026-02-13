@@ -24,7 +24,7 @@ function App() {
             {/* Public Routes wrapped in Layout */}
             <Route path="/" element={<Layout><Dashboard /></Layout>} />
 
-            {/* Registration removed as per user request */}
+            <Route path="/register" element={<Layout><Registration /></Layout>} />
 
             <Route path="/students" element={<Layout><StudentList /></Layout>} />
             <Route path="/marking" element={<Layout><Marking /></Layout>} />

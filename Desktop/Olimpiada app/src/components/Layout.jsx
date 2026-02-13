@@ -11,6 +11,7 @@ export default function Layout({ children }) {
         { path: '/marking', label: 'Marking', icon: BookOpen },
         { path: '/leaderboard', label: 'Leaderboard', icon: Trophy },
         { path: '/cabinets', label: 'Cabinets', icon: Settings },
+        { path: '/register', label: 'Registration', icon: UserPlus },
     ]
 
     return (
