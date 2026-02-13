@@ -3,14 +3,12 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider } from './contexts/AuthContext'
 import Layout from './components/Layout'
 import SplashScreen from './components/SplashScreen'
-import ProtectedRoute from './components/ProtectedRoute'
 import Dashboard from './pages/Dashboard'
 import Registration from './pages/Registration'
 import Cabinets from './pages/Cabinets'
 import StudentList from './pages/StudentList'
 import Marking from './pages/Marking'
 import Leaderboard from './pages/Leaderboard'
-import Login from './pages/Login'
 import './index.css'
 
 function App() {
@@ -23,35 +21,15 @@ function App() {
       ) : (
         <BrowserRouter>
           <Routes>
-            <Route path="/login" element={<Login />} />
+            {/* Public Routes wrapped in Layout */}
+            <Route path="/" element={<Layout><Dashboard /></Layout>} />
 
-            {/* Protected Routes wrapped in Layout */}
-            <Route path="/" element={
-              <ProtectedRoute>
-                <Layout><Dashboard /></Layout>
-              </ProtectedRoute>
-            } />
             {/* Registration removed as per user request */}
-            <Route path="/students" element={
-              <ProtectedRoute>
-                <Layout><StudentList /></Layout>
-              </ProtectedRoute>
-            } />
-            <Route path="/marking" element={
-              <ProtectedRoute>
-                <Layout><Marking /></Layout>
-              </ProtectedRoute>
-            } />
-            <Route path="/leaderboard" element={
-              <ProtectedRoute>
-                <Layout><Leaderboard /></Layout>
-              </ProtectedRoute>
-            } />
-            <Route path="/cabinets" element={
-              <ProtectedRoute>
-                <Layout><Cabinets /></Layout>
-              </ProtectedRoute>
-            } />
+
+            <Route path="/students" element={<Layout><StudentList /></Layout>} />
+            <Route path="/marking" element={<Layout><Marking /></Layout>} />
+            <Route path="/leaderboard" element={<Layout><Leaderboard /></Layout>} />
+            <Route path="/cabinets" element={<Layout><Cabinets /></Layout>} />
 
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>

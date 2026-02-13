@@ -1,10 +1,8 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { LayoutDashboard, UserPlus, Settings, School, Users, BookOpen, Trophy, LogOut } from 'lucide-react'
-import { useAuth } from '../contexts/AuthContext'
+import { LayoutDashboard, UserPlus, Settings, School, Users, BookOpen, Trophy } from 'lucide-react'
 
 export default function Layout({ children }) {
     const location = useLocation()
-    const { signOut } = useAuth()
     const navigate = useNavigate()
 
     const navItems = [
@@ -14,11 +12,6 @@ export default function Layout({ children }) {
         { path: '/leaderboard', label: 'Leaderboard', icon: Trophy },
         { path: '/cabinets', label: 'Cabinets', icon: Settings },
     ]
-
-    const handleLogout = async () => {
-        await signOut()
-        navigate('/login')
-    }
 
     return (
         <div style={{ display: 'flex', minHeight: '100vh' }}>
@@ -62,32 +55,7 @@ export default function Layout({ children }) {
                     })}
                 </nav>
 
-                <div style={{ borderTop: '1px solid var(--glass-border)', paddingTop: '1rem', marginTop: '1rem' }}>
-                    <button
-                        onClick={handleLogout}
-                        style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '0.75rem',
-                            padding: '0.75rem 1rem',
-                            borderRadius: 'var(--radius)',
-                            color: '#ef4444',
-                            background: 'transparent',
-                            border: 'none',
-                            width: '100%',
-                            cursor: 'pointer',
-                            fontWeight: 500,
-                            transition: 'all 0.2s',
-                            fontSize: '1rem',
-                            fontFamily: 'inherit'
-                        }}
-                        onMouseEnter={(e) => e.currentTarget.style.background = '#ef444410'}
-                        onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
-                    >
-                        <LogOut size={20} />
-                        Logout
-                    </button>
-                </div>
+                <div style={{ height: '1rem' }}></div>
             </aside>
 
             {/* Main Content */}
