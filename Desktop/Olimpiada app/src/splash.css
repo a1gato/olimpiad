@@ -4,7 +4,8 @@
     left: 0;
     width: 100%;
     height: 100vh;
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    background: #0f172a;
+    /* Solid dark background for contrast */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,86 +18,92 @@
     pointer-events: none;
 }
 
-.splash-content {
+.splash-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    opacity: 0;
-    transform: scale(0.9);
-    transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.splash-content.visible {
+/* SVG Text Animation */
+.svg-text-container {
+    position: absolute;
+    width: 80%;
+    max-width: 600px;
+    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    opacity: 1;
+    transform: scale(1);
+    filter: drop-shadow(0 0 10px rgba(79, 70, 229, 0.5));
+}
+
+.svg-text-container.hidden {
+    opacity: 0;
+    transform: scale(0.5);
+    /* Shrink into the center where logo appears */
+}
+
+.splash-svg {
+    width: 100%;
+    height: auto;
+}
+
+.splash-text-path {
+    font-family: 'Inter', sans-serif;
+    /* or your logo font */
+    font-weight: 900;
+    font-size: 60px;
+    fill: transparent;
+    stroke: #4f46e5;
+    stroke-width: 1;
+    stroke-dasharray: 400;
+    stroke-dashoffset: 400;
+    animation: textDraw 2s ease-in-out forwards, textFill 0.5s ease-out 2s forwards;
+}
+
+/* Real Logo Animation */
+.real-logo-container {
+    position: absolute;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.real-logo-container.visible {
     opacity: 1;
     transform: scale(1);
 }
 
-.logo-container {
-    position: relative;
+.real-logo {
     width: 150px;
     height: 150px;
-    margin-bottom: 2rem;
-    overflow: hidden;
-    border-radius: 50%;
-    /* Optional: if logo fits in circle */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* Add a subtle glow/shadow */
-    box-shadow: 0 0 30px rgba(79, 70, 229, 0.3);
-}
-
-.splash-logo {
-    width: 100%;
-    height: 100%;
     object-fit: contain;
-    /* Drop shadow for depth */
-    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+    filter: drop-shadow(0 0 20px rgba(79, 70, 229, 0.6));
+    animation: pulseGlow 2s infinite ease-in-out;
 }
 
-.shine-effect {
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(to right,
-            rgba(255, 255, 255, 0) 0%,
-            rgba(255, 255, 255, 0.3) 50%,
-            rgba(255, 255, 255, 0) 100%);
-    transform: skewX(-25deg);
-    animation: shine 2s infinite;
-}
-
-.splash-title {
-    color: #ffffff;
-    font-size: 2.5rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    background: linear-gradient(to right, #fff, #94a3b8);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin: 0;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.8s ease-out 0.4s forwards;
-}
-
-@keyframes shine {
-    0% {
-        left: -100%;
-    }
-
-    50%,
-    100% {
-        left: 200%;
-    }
-}
-
-@keyframes fadeInUp {
+@keyframes textDraw {
     to {
-        opacity: 1;
-        transform: translateY(0);
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes textFill {
+    to {
+        fill: #ffffff;
+        stroke: transparent;
+    }
+}
+
+@keyframes pulseGlow {
+
+    0%,
+    100% {
+        filter: drop-shadow(0 0 20px rgba(79, 70, 229, 0.6));
+    }
+
+    50% {
+        filter: drop-shadow(0 0 40px rgba(236, 72, 153, 0.8));
     }
 }

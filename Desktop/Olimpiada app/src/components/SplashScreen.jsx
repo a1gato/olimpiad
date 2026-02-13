@@ -3,22 +3,26 @@ import '../splash.css'
 
 export default function SplashScreen({ onFinish }) {
     const [isVisible, setIsVisible] = useState(true)
-    const [animationStep, setAnimationStep] = useState(0) // 0: start, 1: logo in, 2: fade out
+    const [animationStep, setAnimationStep] = useState(0)
 
     useEffect(() => {
-        // Step 1: Logo enters immediately
-        const timer1 = setTimeout(() => setAnimationStep(1), 100)
+        // Timeline:
+        // 0s: Start text drawing (handled by CSS)
+        // 2.0s: Text drawing done, start fill/glow
+        // 3.0s: Start transforming to logo (fade out text, fade in logo)
 
-        // Step 2: Start fading out after 2.5 seconds
-        const timer2 = setTimeout(() => {
-            setAnimationStep(2)
+        const timer1 = setTimeout(() => {
+            setAnimationStep(1) // Morph phase
         }, 2500)
 
-        // Step 3: Remove component from DOM after fade out completes (e.g. 500ms transition)
+        const timer2 = setTimeout(() => {
+            setAnimationStep(2) // Exit phase
+        }, 4500)
+
         const timer3 = setTimeout(() => {
             setIsVisible(false)
             onFinish()
-        }, 3000)
+        }, 5000)
 
         return () => {
             clearTimeout(timer1)
@@ -31,12 +35,20 @@ export default function SplashScreen({ onFinish }) {
 
     return (
         <div className={`splash-screen ${animationStep === 2 ? 'fade-out' : ''}`}>
-            <div className={`splash-content ${animationStep >= 1 ? 'visible' : ''}`}>
-                <div className="logo-container">
-                    <img src="/logo.png" alt="Olympiad" className="splash-logo" />
-                    <div className="shine-effect"></div>
+            <div className="splash-container">
+                {/* SVG Text Animation */}
+                <div className={`svg-text-container ${animationStep >= 1 ? 'hidden' : ''}`}>
+                    <svg viewBox="0 0 400 100" className="splash-svg">
+                        <text x="50%" y="50%" dy=".35em" textAnchor="middle" className="splash-text-path">
+                            OLYMPIAD
+                        </text>
+                    </svg>
                 </div>
-                <h1 className="splash-title">Olympiad App</h1>
+
+                {/* Real Logo (Hidden initially, appears in step 1) */}
+                <div className={`real-logo-container ${animationStep >= 1 ? 'visible' : ''}`}>
+                    <img src="/logo.png" alt="Olympiad" className="real-logo" />
+                </div>
             </div>
         </div>
     )
