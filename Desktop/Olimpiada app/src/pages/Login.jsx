@@ -4,7 +4,7 @@ import { useAuth } from '../contexts/AuthContext'
 import { Lock, Mail } from 'lucide-react'
 
 export default function Login() {
-    const [email, setEmail] = useState('')
+    const [loginId, setLoginId] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
@@ -15,6 +15,9 @@ export default function Login() {
         e.preventDefault()
         setError('')
         setLoading(true)
+
+        // Construct pseudo-email from ID
+        const email = `${loginId}@olimpiad.app`
 
         const { error } = await signIn({ email, password })
 
@@ -58,17 +61,17 @@ export default function Login() {
 
                 <form onSubmit={handleSubmit}>
                     <div style={{ marginBottom: '1.5rem' }}>
-                        <label>Email Address</label>
+                        <label>Login ID</label>
                         <div style={{ position: 'relative' }}>
                             <Mail size={18} style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
                             <input
-                                type="email"
+                                type="text"
                                 className="input-field"
                                 style={{ paddingLeft: '2.5rem', marginBottom: 0 }}
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
+                                value={loginId}
+                                onChange={(e) => setLoginId(e.target.value)}
                                 required
-                                placeholder="name@example.com"
+                                placeholder="Enter your ID"
                             />
                         </div>
                     </div>
