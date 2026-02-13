@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
-import { Lock, Mail } from 'lucide-react'
+import { Lock, User } from 'lucide-react'
 
 export default function Login() {
     const [loginId, setLoginId] = useState('')
@@ -63,7 +63,7 @@ export default function Login() {
                     <div style={{ marginBottom: '1.5rem' }}>
                         <label>Login ID</label>
                         <div style={{ position: 'relative' }}>
-                            <Mail size={18} style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
+                            <User size={18} style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
                             <input
                                 type="text"
                                 className="input-field"
