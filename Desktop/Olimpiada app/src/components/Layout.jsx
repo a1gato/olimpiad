@@ -25,7 +25,7 @@ export default function Layout({ children }) {
                 flexDirection: 'column'
             }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '3rem', color: 'var(--primary)' }}>
-                    <School size={32} />
+                    <img src="/logo.png" alt="Olympiad Logo" style={{ height: '32px' }} />
                     <h1 style={{ fontSize: '1.25rem', margin: 0 }}>Olympiad App</h1>
                 </div>
 
