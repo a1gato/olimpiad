@@ -33,16 +33,19 @@
     position: absolute;
     width: 80%;
     max-width: 600px;
-    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    /* Faster exit transition for a 'pop' effect */
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     opacity: 1;
     transform: scale(1);
-    /* Lighter shadow for light mode */
-    filter: drop-shadow(0 10px 20px rgba(79, 70, 229, 0.2));
+    filter: blur(0px);
 }
 
 .svg-text-container.hidden {
     opacity: 0;
-    transform: scale(0.5);
+    transform: scale(0.2);
+    /* Shrink almost to nothing */
+    filter: blur(10px);
+    /* Add motion blur feel */
 }
 
 .splash-svg {
@@ -69,19 +72,24 @@
 /* Real Logo Animation */
 .real-logo-container {
     position: absolute;
+    /* Start small and blurry */
     opacity: 0;
-    transform: scale(0);
-    transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform: scale(0.2);
+    filter: blur(10px);
+    transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .real-logo-container.visible {
     opacity: 1;
     transform: scale(1);
+    /* Expand to full size */
+    filter: blur(0px);
 }
 
 .real-logo {
-    width: 150px;
-    height: 150px;
+    width: 180px;
+    /* Slightly larger logo */
+    height: 180px;
     object-fit: contain;
     filter: drop-shadow(0 10px 25px rgba(79, 70, 229, 0.4));
     animation: pulseGlow 2s infinite ease-in-out;
