@@ -24,9 +24,8 @@ export default function Layout({ children }) {
                 display: 'flex',
                 flexDirection: 'column'
             }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '3rem', color: 'var(--primary)' }}>
-                    <img src="/logo.png" alt="Olympiad Logo" style={{ height: '50px' }} />
-                    <h1 style={{ fontSize: '1.25rem', margin: 0 }}>Olympiad App</h1>
+                <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem', color: 'var(--primary)' }}>
+                    <img src="/logo.png" alt="Olympiad Logo" style={{ height: '120px' }} />
                 </div>
 
                 <nav style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
