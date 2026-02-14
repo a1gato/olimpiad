@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider } from './contexts/AuthContext'
 import Layout from './components/Layout'
 import SplashScreen from './components/SplashScreen'
@@ -19,7 +19,7 @@ function App() {
       {!splashFinished ? (
         <SplashScreen onFinish={() => setSplashFinished(true)} />
       ) : (
-        <BrowserRouter>
+        <HashRouter>
           <Routes>
             {/* Public Routes wrapped in Layout */}
             <Route path="/" element={<Layout><Dashboard /></Layout>} />
@@ -33,7 +33,7 @@ function App() {
 
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
-        </BrowserRouter>
+        </HashRouter>
       )}
     </AuthProvider>
   )
